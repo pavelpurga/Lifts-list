@@ -10,12 +10,17 @@
   },
   "dependencies": {
     "@apollo/client": "^3.8.4",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.11",
     "apollo-boost": "^0.4.9",
     "graphql": "^15.8.0",
     "isomorphic-unfetch": "^4.0.2",
     "next": "latest",
     "react": "^18.2.0",
     "react-dom": "latest",
+    "react-window": "^1.8.9",
+    "swr": "^2.2.4",
     "unfetch": "^5.0.0"
   },
   "devDependencies": {
