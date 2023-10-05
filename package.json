@@ -10,12 +10,18 @@
   },
   "dependencies": {
     "@apollo/client": "^3.8.4",
-    "@types/graphql": "^14.5.0",
-    "graphql": "^16.8.1",
-    "graphql-tag": "^2.12.6",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.11",
+    "apollo-boost": "^0.4.9",
+    "graphql": "^15.8.0",
+    "isomorphic-unfetch": "^4.0.2",
     "next": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "react": "^18.2.0",
+    "react-dom": "latest",
+    "react-window": "^1.8.9",
+    "swr": "^2.2.4",
+    "unfetch": "^5.0.0"
   },
   "devDependencies": {
     "@types/node": "latest",
