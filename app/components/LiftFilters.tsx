@@ -1,27 +1,19 @@
-import React from 'react';
-import { LiftStatus } from '@/app/api/lifts';
+import { Select, MenuItem } from "@mui/material";
+import {LiftStatus} from "@/app/api/lifts";
 
-interface LiftFilterProps {
-    onChange: (status: LiftStatus) => void;
+type LiftFilterProps = {
     selectedStatus: LiftStatus;
-}
+    handleFilterChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+};
 
-const LiftFilter: React.FC<LiftFilterProps> = ({ onChange, selectedStatus }) => {
-    const handleStatusChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const status = event.target.value as LiftStatus;
-        onChange(status);
-    };
-
+const LiftFilter = ({ selectedStatus, handleFilterChange }: LiftFilterProps) => {
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', margin: '20px 0' }}>
-            <label style={{ marginRight: '10px' }}>Filter:</label>
-            <select value={selectedStatus} onChange={handleStatusChange}>
-                <option value="ALL">All</option>
-                <option value={LiftStatus.OPEN}>OPEN</option>
-                <option value={LiftStatus.CLOSED}>CLOSED</option>
-                <option value={LiftStatus.HOLD}>HOLD</option>
-            </select>
-        </div>
+        <select value={selectedStatus} onChange={handleFilterChange}>
+            <option value="ALL">All</option>
+            <option value="OPEN">OPEN</option>
+            <option value="CLOSED">CLOSED</option>
+            <option value="HOLD">HOLD</option>
+        </select>
     );
 };
 

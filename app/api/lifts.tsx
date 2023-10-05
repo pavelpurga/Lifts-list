@@ -12,7 +12,11 @@ export const ALL_LIFTS_QUERY = gql`
     allLifts(status: $status) {
       name
       elevationGain
-      status 
+      status
+      trailAccess{
+      name
+      status
+    }
     }
   }
 `;
