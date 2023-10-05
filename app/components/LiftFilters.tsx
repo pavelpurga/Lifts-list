@@ -1,4 +1,3 @@
-import { Select, MenuItem } from "@mui/material";
 import {LiftStatus} from "@/app/api/lifts";
 
 type LiftFilterProps = {

@@ -23,7 +23,8 @@ export async function getServerSideProps()  {
 }
 
 function HomePage({ allLifts }: { allLifts: any[] }) {
-    const [selectedStatus, setSelectedStatus] = useState<LiftStatus>('ALL');
+    // @ts-ignore
+    const [selectedStatus, setSelectedStatus] = useState<LiftStatus>("ALL");
     const [selectedLift, setSelectedLift] = useState<any>(null);
     const [openModal, setOpenModal] = useState(false);
     const [liftName, setLiftName] = useState("");
