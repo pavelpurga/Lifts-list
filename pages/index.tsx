@@ -7,7 +7,7 @@ import {Modal} from "@mui/material";
 import LiftModal from "@/app/components/LiftModal";
 import LiftList from "@/app/components/LiftList";
 
-export async function getServerSideProps()  {
+export async function getStaticProps()  {
     const client = getClient();
     const { data } = await client.query({
         query: ALL_LIFTS_QUERY,
