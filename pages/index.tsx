@@ -4,7 +4,6 @@ import LiftFilter from "@/app/components/LiftFilters";
 import query from "apollo-cache-inmemory/lib/fragmentMatcherIntrospectionQuery";
 import {useState} from "react";
 import {Modal} from "@mui/material";
-import {gql} from "@apollo/client";
 import LiftModal from "@/app/components/LiftModal";
 import LiftList from "@/app/components/LiftList";
 
@@ -44,36 +43,7 @@ function HomePage({ allLifts }: { allLifts: any[] }) {
         setOpenModal(false);
     };
     const handleSaveClick = async () => {
-        if (selectedLift) {
-            const client = getClient();
-            setSelectedLift((prevLift: any) => ({
-                ...prevLift,
-                status: liftStatus,
-            }));
-            await client.mutate({
-                mutation: gql`
-        mutation UpdateLiftStatus($liftName: String!, $liftStatus: LiftStatus!) {
-          updateLiftStatus(name: $liftName, status: $liftStatus) {
-            name
-            elevationGain
-            status
-          }
-        }
-      `,
-                variables: {
-                    liftName: selectedLift.name,
-                    liftStatus: liftStatus,
-                },
-                refetchQueries: [
-                    {
-                        query: ALL_LIFTS_QUERY,
-                        variables: {
-                            status: selectedStatus !== "ALL" ? selectedStatus : null,
-                        },
-                    },
-                ],
-            });
-        }
+
 
         setOpenModal(false);
     };
