@@ -44,8 +44,6 @@ function HomePage({ allLifts }: { allLifts: any[] }) {
         setOpenModal(false);
     };
     const handleSaveClick = async () => {
-
-
         setOpenModal(false);
     };
     const filteredLifts = selectedStatus === 'ALL' ? allLifts : allLifts.filter(lift => lift.status === selectedStatus);

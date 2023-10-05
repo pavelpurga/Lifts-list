@@ -1,6 +1,7 @@
 import {Button, MenuItem, Select} from "@mui/material";
 import ListItemText from "@mui/material/ListItemText";
 import Box from "@mui/material/Box";
+import {getClient, SET_LIFT_STATUS_MUTATION} from "@/app/api/lifts";
 
 type LiftModalProps = {
     liftName: string;
@@ -19,8 +20,25 @@ const LiftModal = ({
                        setLiftStatus,
                        selectedLift,
                        handleCancelClick,
-                       handleSaveClick,
+                       handleSaveClick
                    }: LiftModalProps) => {
+    const saveLiftStatus = async () => {
+        try {
+            const client = getClient();
+
+            const { data } = await client.mutate({
+                mutation: SET_LIFT_STATUS_MUTATION,
+                variables: {
+                    id: selectedLift.id,
+                    status: liftStatus,
+                },
+            });
+
+            handleSaveClick();
+        } catch (error) {
+            console.error(error);
+        }
+    };
     return (
         <Box
             sx={{
@@ -84,7 +102,7 @@ const LiftModal = ({
                 <Button variant="contained" onClick={handleCancelClick}>
                     Cancel
                 </Button>
-                <Button sx={{marginLeft:18}} variant="contained" onClick={handleSaveClick}>
+                <Button sx={{marginLeft:18}} variant="contained" onClick={saveLiftStatus}>
                     Save
                 </Button>
             </div>

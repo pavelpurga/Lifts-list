@@ -21,6 +21,15 @@ export const ALL_LIFTS_QUERY = gql`
   }
 `;
 
+export const SET_LIFT_STATUS_MUTATION = gql`
+  mutation setLiftStatus($id: ID!, $status: LiftStatus!) {
+    setLiftStatus(id: $id, status: $status) {
+      id
+      name
+      status
+    }
+  }
+`;
 export enum LiftStatus {
     ALL = 'ALL',
     OPEN = 'OPEN',
