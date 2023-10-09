@@ -4,36 +4,40 @@ import Box from "@mui/material/Box";
 import {getClient, SET_LIFT_STATUS_MUTATION} from "@/app/api/lifts";
 
 type LiftModalProps = {
+    liftID:string;
     liftName: string;
     elevationGain: string;
     liftStatus: string;
-    setLiftStatus: (status: string) => void;
+    handleStatusChange: (status: string) => void;
     selectedLift: any;
     handleCancelClick: () => void;
     handleSaveClick: () => void;
 };
 
 const LiftModal = ({
+                       liftID,
                        liftName,
                        elevationGain,
                        liftStatus,
-                       setLiftStatus,
+                       handleStatusChange,
                        selectedLift,
                        handleCancelClick,
                        handleSaveClick
                    }: LiftModalProps) => {
     const saveLiftStatus = async () => {
         try {
+            if (!selectedLift) {
+                console.error("Selected lift is null.");
+                return;
+            }
             const client = getClient();
-
-            const { data } = await client.mutate({
+            await client.mutate({
                 mutation: SET_LIFT_STATUS_MUTATION,
                 variables: {
-                    id: selectedLift.id,
+                    id: liftID,
                     status: liftStatus,
                 },
             });
-
             handleSaveClick();
         } catch (error) {
             console.error(error);
@@ -63,7 +67,11 @@ const LiftModal = ({
             </div>
             <div style={{marginTop:20}}>
                 <label>Status:</label>
-                <Select sx={{height:20}} value={liftStatus} onChange={(e) => setLiftStatus(e.target.value)}>
+                <Select
+                    sx={{height:20}}
+                    value={liftStatus}
+                    onChange={(e) => handleStatusChange(e.target.value)}
+                >
                     <MenuItem value="OPEN">OPEN</MenuItem>
                     <MenuItem value="CLOSED">CLOSED</MenuItem>
                     <MenuItem value="HOLD">HOLD</MenuItem>

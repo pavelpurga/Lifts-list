@@ -28,17 +28,22 @@ function HomePage({ allLifts }: { allLifts: any[] }) {
     const [selectedLift, setSelectedLift] = useState<any>(null);
     const [openModal, setOpenModal] = useState(false);
     const [liftName, setLiftName] = useState("");
+    const [liftID, setLiftID] = useState("");
     const [elevationGain, setElevationGain] = useState("");
     const [liftStatus, setLiftStatus] = useState("");
     const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedStatus(event.target.value as LiftStatus);
     };
     const handleEditClick = (lift: any) => {
+        setLiftID(lift.id)
         setSelectedLift(lift);
         setLiftName(lift.name);
         setElevationGain(lift.elevationGain);
         setLiftStatus(lift.status);
         setOpenModal(true);
+    };
+    const handleStatusChange = (status: string) => {
+        setLiftStatus(status);
     };
     const handleCancelClick = () => {
         setOpenModal(false);
@@ -61,10 +66,11 @@ function HomePage({ allLifts }: { allLifts: any[] }) {
             </div>
             <Modal open={openModal} onClose={handleCancelClick}>
                 <LiftModal
+                    liftID={liftID}
                     liftName={liftName}
                     elevationGain={elevationGain}
                     liftStatus={liftStatus}
-                    setLiftStatus={setLiftStatus}
+                    handleStatusChange={handleStatusChange}
                     selectedLift={selectedLift}
                     handleCancelClick={handleCancelClick}
                     handleSaveClick={handleSaveClick}

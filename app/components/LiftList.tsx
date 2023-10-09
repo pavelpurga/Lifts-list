@@ -4,6 +4,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 
 interface Lift {
+    id: string;
     name: string;
     elevationGain: number;
     status: string;
@@ -18,7 +19,7 @@ const LiftList: React.FC<LiftListProps> = ({ lifts, handleEditClick }) => {
     return (
         <>
             {lifts.map((lift) => (
-                <ListItem key={lift.name} sx={{ display: 'flex', border: '1px solid black' }}>
+                <ListItem key={lift.id} sx={{ display: 'flex', border: '1px solid black' }}>
                     <div style={{ flex: 1 }}>
                         <ListItemText primary={`Name: ${lift.name}`} />
                         <ListItemText primary={`Elevation Gain: ${lift.elevationGain}`} />
