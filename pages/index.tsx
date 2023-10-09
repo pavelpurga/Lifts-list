@@ -21,7 +21,6 @@ export async function getStaticProps()  {
         },
     };
 }
-
 function HomePage({ allLifts }: { allLifts: any[] }) {
     // @ts-ignore
     const [selectedStatus, setSelectedStatus] = useState<LiftStatus>("ALL");
@@ -79,5 +78,4 @@ function HomePage({ allLifts }: { allLifts: any[] }) {
         </div>
     );
 }
-
 export default HomePage;
