@@ -31,6 +31,7 @@ export const SET_LIFT_STATUS_MUTATION = gql`
   }
 `;
 export enum LiftStatus {
+    ALL ='ALL',
     OPEN = 'OPEN',
     CLOSED = 'CLOSED',
     HOLD = 'HOLD',
